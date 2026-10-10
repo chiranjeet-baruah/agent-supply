@@ -7,6 +7,7 @@ These first-party skills contain instructions only. CI checks file structure and
 | Skill | Category | Purpose | Version |
 | --- | --- | --- | --- |
 | [Go Code Review](skills/go-code-review/SKILL.md) | Software engineering | Review Go changes for correctness, concurrency, reliability, and test gaps. | 0.1.0 |
+| [Minimalist Engineer](skills/minimalist-engineer/SKILL.md) | Software engineering | Make focused code changes while preserving behavior, safeguards, and clarity. | 0.1.0 |
 | [PostgreSQL Query Review](skills/postgres-query-review/SKILL.md) | Databases | Diagnose query correctness and performance using plans and workload evidence. | 0.1.0 |
 
 See [README.md](README.md) for installation guidance and [CONTRIBUTING.md](CONTRIBUTING.md) for the review policy.

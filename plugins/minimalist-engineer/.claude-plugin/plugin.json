@@ -1,0 +1,11 @@
+{
+  "name": "minimalist-engineer",
+  "version": "0.1.0",
+  "description": "Make focused code changes while preserving behavior, safeguards, and clarity.",
+  "author": {
+    "name": "AgentSupply"
+  },
+  "homepage": "https://github.com/chiranjeet-baruah/agent-supply",
+  "repository": "https://github.com/chiranjeet-baruah/agent-supply",
+  "license": "Apache-2.0"
+}

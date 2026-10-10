@@ -4,6 +4,7 @@ For releases after `v0.1.0`, see [GitHub Releases](https://github.com/chiranjeet
 
 ## Changes since 0.1.0
 
+- Added the Minimalist Engineer skill for focused code changes and simplicity reviews.
 - Added installable Codex and Claude Code repository marketplaces, with CI checks that packaged skills match their reviewed sources.
 - Required SkillSpector static scans and the existing validator to pass before merging to `main`.
 - Updated the contributor, security, and maintainer documentation to reflect the current workflow.

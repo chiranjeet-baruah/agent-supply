@@ -1,6 +1,6 @@
 # AgentSupply
 
-Choose a skill in the [catalog](CATALOG.md), read its instructions, then install it with Codex or Claude Code. AgentSupply currently has two engineering skills. Each contains instructions, with no bundled scripts or MCP server.
+Choose a skill in the [catalog](CATALOG.md), read its instructions, then install it with Codex or Claude Code. AgentSupply publishes instruction-only engineering skills, with no bundled scripts or MCP server.
 
 ## Install through a marketplace
 
@@ -20,7 +20,7 @@ claude plugin marketplace add chiranjeet-baruah/agent-supply
 claude plugin install go-code-review@agent-supply
 ```
 
-To install the other skill, replace `go-code-review` with `postgres-query-review`.
+To install another skill, replace `go-code-review` with its ID from the catalog, such as `minimalist-engineer` or `postgres-query-review`.
 
 When this repository is open in the ChatGPT desktop app, **AgentSupply** can also appear in its Plugins Directory. Adding this repository does not list it in OpenAI's or Anthropic's public plugin directories.
 
