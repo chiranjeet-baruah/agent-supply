@@ -23,3 +23,24 @@ jobs:
         run: python3 tooling/validate.py
       - name: Run validator tests
         run: python3 -m unittest discover -s tests -v
+
+  skillspector:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Install pinned SkillSpector
+        run: |
+          python3.12 -m venv "$RUNNER_TEMP/skillspector-venv"
+          "$RUNNER_TEMP/skillspector-venv/bin/pip" install 'skillspector @ git+https://github.com/NVIDIA/skillspector.git@5edc347c320bd516f8ff38df200a63831bf92e80' # v2.12.0
+      - name: Scan every skill
+        run: |
+          set -euo pipefail
+          for manifest in skills/*/SKILL.md; do
+            test -f "$manifest"
+            "$RUNNER_TEMP/skillspector-venv/bin/skillspector" scan "${manifest%/SKILL.md}" \
+              --no-llm --fail-on-findings --fail-on-incomplete --min-coverage 100
+          done
