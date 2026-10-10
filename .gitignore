@@ -1,0 +1,38 @@
+# Local secrets and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Python and test output
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage/
+
+# Local dependency installs
+node_modules/
+
+# Local editor and OS state
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Temporary output
+*.log
+/tmp/
+.cache/
+
+# Keep agent packages and generated marketplace manifests visible to Git.
+# In particular, do not ignore .agents/, .claude-plugin/, skills/, or dist/.
