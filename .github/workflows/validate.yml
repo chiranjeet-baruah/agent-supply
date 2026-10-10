@@ -8,6 +8,11 @@ on:
 permissions:
   contents: read
 
+# Queue main runs before checks to keep releases in run order.
+concurrency:
+  group: ${{ github.event_name == 'push' && 'agent-supply-main' || github.run_id }}
+  queue: max
+
 jobs:
   validate:
     runs-on: ubuntu-24.04
@@ -52,9 +57,6 @@ jobs:
     timeout-minutes: 5
     permissions:
       contents: write
-    concurrency:
-      group: agent-supply-release-main
-      queue: max
     steps:
       - name: Publish next patch release
         env:
@@ -75,8 +77,14 @@ jobs:
             echo "Latest release tag is not vMAJOR.MINOR.PATCH: ${latest_tag}" >&2
             exit 1
           fi
-
           next_tag="v${BASH_REMATCH[1]}.${BASH_REMATCH[2]}.$((10#${BASH_REMATCH[3]} + 1))"
+
+          comparison=$(gh api "repos/${GITHUB_REPOSITORY}/compare/${latest_tag}...${GITHUB_SHA}" --jq .status)
+          if [[ "$comparison" != ahead ]]; then
+            echo "Commit ${GITHUB_SHA} is not ahead of ${latest_tag}: ${comparison}" >&2
+            exit 1
+          fi
+
           gh release create "$next_tag" \
             --target "$GITHUB_SHA" \
             --title "$next_tag" \
