@@ -22,6 +22,8 @@ Dependabot checks GitHub Actions and the locked CI Python environment weekly. Re
 
 SkillSpector is installed from a reviewed upstream commit recorded in `pyproject.toml`. `uv.lock` fixes its Python dependency versions and artifact hashes, and the required `skillspector` job audits the lock before installing it. This job also runs every Monday so new advisories can fail a run even without a pull request. Dependabot updates the registry packages. It does not update SkillSpector's Git commit: check upstream releases and advisories, change the commit in `pyproject.toml`, regenerate `uv.lock` with `uv lock`, and use a PR that passes both checks.
 
+The setup-uv Action is tracked by Dependabot; its `version` input pins the uv binary separately. Review new uv releases and update that input through a checked PR. Keep the binary pinned so CI does not change between reviews.
+
 ## Repository settings
 
 Checked on 2026-10-10: `chiranjeet-baruah/agent-supply` is public. The active `Protect main` ruleset requires a pull request and both status checks, uses strict checks, and blocks force pushes and deletion. Automatic deletion of merged branches, secret scanning, push protection, Dependabot alerts and security updates, and private vulnerability reporting are enabled. A local clone cannot verify live GitHub settings.
