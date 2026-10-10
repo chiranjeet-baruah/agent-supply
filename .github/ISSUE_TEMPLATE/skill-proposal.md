@@ -7,16 +7,16 @@ labels: enhancement
 
 ## Task and users
 
-What specific task should the skill help with, and who needs it?
+Name the task and who would use this skill. Give one example request.
 
 ## Expected behavior
 
-What inputs should it use and what output should it produce?
+What inputs would it read? What output should it produce?
 
 ## Existing alternatives
 
-What already solves this task, and what gap remains?
+What already solves this task? What gap remains?
 
 ## Permissions and sources
 
-Would it need tools, network access, credentials, or third-party content? Link the source and license of any proposed material.
+List any tools, network access, credentials, or third-party content it would need. Link the source and license of proposed material.

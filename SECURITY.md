@@ -1,13 +1,13 @@
 # Security policy
 
-Agent instructions can influence tool use, data access, and code execution in the host agent. Treat every skill as code-like supply-chain input: inspect it before installation and use the least privileges your harness supports.
+Report a vulnerability through [GitHub private vulnerability reporting](https://github.com/chiranjeet-baruah/agent-supply/security/advisories/new). If that option is unavailable, open a public issue asking for a private contact channel. Keep exploit details, secrets, and affected user data out of the public issue.
 
-## Reporting a vulnerability
+Include the affected skill and version, impact, reproduction steps, and a safe way to contact you. Maintainers triage reports as capacity permits; there is no response-time guarantee.
 
-Use [GitHub private vulnerability reporting](https://github.com/chiranjeet-baruah/agent-supply/security/advisories/new) if available. If that option is unavailable, open a public issue requesting a private contact channel **without** exploit details, secrets, or affected user data.
+## Before installing a skill
 
-Include the affected skill and version, impact, reproduction steps, and a safe way to contact you. Maintainers will acknowledge and triage reports as capacity permits; no response-time guarantee is implied.
+Read its instructions and give your agent only the permissions it needs. A skill can influence tool use, data access, and code execution in the host agent.
 
-## Scope of checks
+## What the checks cover
 
-The automated validator enforces a narrow file layout and metadata consistency. It does not detect every malicious instruction, verify behavioral safety, or test all harnesses. The current catalog contains no executable scripts or bundled MCP servers. Maintainers may remove or amend a listing if a material risk is found.
+The repository validator checks file layout and metadata. CI also runs SkillSpector's static security scan on every skill. Neither check runs a skill, catches every malicious instruction, or tests behavior in every agent. The current catalog contains no executable scripts or bundled MCP servers. Maintainers may amend or remove a skill if a material risk is found.

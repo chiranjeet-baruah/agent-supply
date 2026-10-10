@@ -23,8 +23,8 @@ Review the supplied Go change as a maintainer responsible for production behavio
 - Do not request broad refactoring when a smaller correction solves the problem.
 - Treat style comments as optional unless they obscure correctness or maintenance.
 - Do not modify code unless the user asks for a fix.
-- If no actionable defect is found, say so and name the most important unverified risk or test gap.
+- If no concrete defect is found, say so and name the most important unverified risk or test gap.
 
 ## Output
 
-Start with actionable findings. Then give a short verification note and any remaining assumptions. Cite repository paths and line numbers where available.
+Start with specific findings. Then give a short verification note and any remaining assumptions. Cite repository paths and line numbers where available.

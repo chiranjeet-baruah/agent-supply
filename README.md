@@ -1,24 +1,18 @@
 # AgentSupply
 
-A curated, open-source catalog of AI agent skills. The first release focuses on two inspectable, instruction-only engineering skills. Plugins and MCP servers are possible later additions; this repository does not claim to install or verify them today.
-
-## Browse
-
-See the [skills catalog](CATALOG.md) and read a skill's `SKILL.md` before installing it. Each entry links to its source. The catalog is generated from [`registry/catalog.json`](registry/catalog.json).
+Start with the [skills catalog](CATALOG.md). AgentSupply publishes two engineering skills you can read before installing. Each skill contains instructions, with no bundled scripts or MCP server. The catalog does not install or verify plugins or MCP servers.
 
 ## Install a skill
 
-1. Choose a skill in the [catalog](CATALOG.md) and inspect its instructions and license.
-2. Copy its entire `skills/<name>/` directory into the skills location documented by your agent harness, preserving the folder name and `SKILL.md`.
-3. Restart or refresh the agent if its documentation requires it, then try a task matching the skill description.
+1. Open a skill in the [catalog](CATALOG.md). Read its `SKILL.md` and license.
+2. Copy the full `skills/<name>/` folder to the skill location documented by your agent. Keep the folder name and `SKILL.md`.
+3. Refresh or restart the agent if its instructions require it. Try a task that matches the skill's description.
 
-The [Agent Skills specification](https://agentskills.io/specification) defines the portable skill format. Harnesses differ in discovery paths and activation behavior. AgentSupply has not yet published harness-specific test results, so installation in one product should not be treated as proof of compatibility in another.
+The [Agent Skills specification](https://agentskills.io/specification) defines the portable format. AgentSupply has not tested these skills across agent products or models. A working install in one product does not establish compatibility elsewhere.
 
-## What validation means
+## Check a contribution
 
-`python3 tooling/validate.py` checks the v0 registry, skill metadata, allowed file layout, symlinks, and whether `CATALOG.md` is current. CI also runs [NVIDIA SkillSpector](https://github.com/NVIDIA/skillspector) static scans on every skill directory. Scans fail on findings or incomplete analysis. These checks read files but do not run skill content. Passing them is **not** a security certification or a behavioral compatibility certification.
-
-To regenerate the catalog after changing [`registry/catalog.json`](registry/catalog.json):
+Run the repository checks from the project root:
 
 ```sh
 python3 tooling/validate.py --write-catalog
@@ -26,14 +20,18 @@ python3 tooling/validate.py
 python3 -m unittest discover -s tests
 ```
 
-The repository validator requires Python 3.10 or newer and has no third-party dependencies. The separate SkillSpector CI job uses Python 3.12 and a pinned upstream revision; its scan policy is in [the workflow](.github/workflows/validate.yml).
+The validator checks [`registry/catalog.json`](registry/catalog.json), skill metadata and file layout, symlinks, and whether `CATALOG.md` is current. It needs Python 3.10 or newer and no third-party packages.
 
-## Contribute and report issues
+CI also scans every skill with [NVIDIA SkillSpector](https://github.com/NVIDIA/skillspector). Its `skillspector` job uses Python 3.12 and a pinned upstream revision. Static scans fail on findings or incomplete coverage. Both `validate` and `skillspector` must pass before merge. The exact commands are in [the workflow](.github/workflows/validate.yml).
 
-Read [CONTRIBUTING.md](CONTRIBUTING.md) before proposing a skill. The first release accepts only original, instruction-only skills with Markdown references. Maintainers review purpose, provenance, behavior, and risks in addition to CI results.
+These checks read skill files without running them. They do not prove that a skill is safe or works in a particular agent.
 
-For a vulnerability, follow [SECURITY.md](SECURITY.md). Governance and publication decisions are described in [GOVERNANCE.md](GOVERNANCE.md).
+## Contribute or report an issue
+
+Read [CONTRIBUTING.md](CONTRIBUTING.md) before proposing a skill. Current submissions must be original, instruction-only skills with optional Markdown references. A maintainer reviews the purpose, source, behavior, and risks.
+
+Report vulnerabilities through [SECURITY.md](SECURITY.md). [GOVERNANCE.md](GOVERNANCE.md) explains publication decisions.
 
 ## License
 
-Original AgentSupply content and tooling are licensed under [Apache License 2.0](LICENSE). Future third-party listings or artifacts must retain their own license and attribution; inclusion in the catalog does not relicense them.
+Original AgentSupply content and tooling use the [Apache License 2.0](LICENSE). A future third-party listing would keep its own license and attribution; appearing in the catalog would not relicense it.
