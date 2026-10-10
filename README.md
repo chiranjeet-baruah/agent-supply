@@ -16,7 +16,7 @@ The [Agent Skills specification](https://agentskills.io/specification) defines t
 
 ## What validation means
 
-`python3 tooling/validate.py` checks the v0 registry, skill metadata, allowed file layout, symlinks, and whether `CATALOG.md` is current. It reads files but does not run skill content. Passing the check is **not** a security audit or a behavioral compatibility certification.
+`python3 tooling/validate.py` checks the v0 registry, skill metadata, allowed file layout, symlinks, and whether `CATALOG.md` is current. CI also runs [NVIDIA SkillSpector](https://github.com/NVIDIA/skillspector) static scans on every skill directory. Scans fail on findings or incomplete analysis. These checks read files but do not run skill content. Passing them is **not** a security certification or a behavioral compatibility certification.
 
 To regenerate the catalog after changing [`registry/catalog.json`](registry/catalog.json):
 
@@ -26,7 +26,7 @@ python3 tooling/validate.py
 python3 -m unittest discover -s tests
 ```
 
-The tooling requires Python 3.10 or newer and has no third-party dependencies.
+The repository validator requires Python 3.10 or newer and has no third-party dependencies. The separate SkillSpector CI job uses Python 3.12 and a pinned upstream revision; its scan policy is in [the workflow](.github/workflows/validate.yml).
 
 ## Contribute and report issues
 

@@ -22,4 +22,4 @@ python3 -m unittest discover -s tests
 
 ## Review
 
-CI checks structure only. A maintainer reviews the instructions, intended authority, provenance, license, references, and likely failure modes. Reviewers may request task examples or evaluation evidence. A merged skill is a curated listing, not a safety guarantee. See [GOVERNANCE.md](GOVERNANCE.md) for publication decisions.
+CI checks structure and scans each skill with SkillSpector's static analyzers. Any finding or incomplete scan blocks merging until it is resolved; there is no automatic suppression baseline. A maintainer reviews the instructions, intended authority, provenance, license, references, and likely failure modes. Reviewers may request task examples or evaluation evidence. A merged skill is a curated listing, not a safety guarantee. See [GOVERNANCE.md](GOVERNANCE.md) for publication decisions.
