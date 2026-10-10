@@ -1,0 +1,19 @@
+{
+  "name": "agent-supply",
+  "description": "Curated engineering skills from AgentSupply",
+  "owner": {
+    "name": "AgentSupply"
+  },
+  "plugins": [
+    {
+      "name": "go-code-review",
+      "source": "./plugins/go-code-review",
+      "description": "Review Go changes for correctness, concurrency, reliability, and test gaps."
+    },
+    {
+      "name": "postgres-query-review",
+      "source": "./plugins/postgres-query-review",
+      "description": "Diagnose query correctness and performance using plans and workload evidence."
+    }
+  ]
+}

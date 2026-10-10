@@ -28,6 +28,8 @@ jobs:
         run: python3 --version
       - name: Validate registry and catalog
         run: python3 tooling/validate.py
+      - name: Validate marketplace packages
+        run: python3 -m tooling.package_plugins
       - name: Run validator tests
         run: python3 -m unittest discover -s tests -v
 

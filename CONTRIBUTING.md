@@ -8,6 +8,7 @@ Open a [skill proposal issue](.github/ISSUE_TEMPLATE/skill-proposal.md) before w
 2. Add plain, single-line `name`, `description`, and `license` fields. The unquoted description should say what the skill does and when to use it. The validator does not accept quoted values or YAML block scalars.
 3. Add optional Markdown references directly under `references/`. The current profile does not accept scripts, binaries, symlinks, nested folders, or external artifact sources.
 4. Add a record to `registry/catalog.json`. Keep existing IDs and paths stable. Raise a published skill's version when its behavior changes, and explain the change in the pull request.
+5. Regenerate `CATALOG.md` and the Codex and Claude marketplace packages. The files under `plugins/` are generated copies; edit the skill under `skills/` instead.
 
 Use `license: Apache-2.0` for original first-party work. Contribute only material you have rights to share; do not copy third-party prompts or documentation without permission and attribution. Do not include credentials, personal data, hidden tool instructions, or undisclosed network destinations. Claims about agent compatibility need test evidence.
 
@@ -15,7 +16,9 @@ Use `license: Apache-2.0` for original first-party work. Contribute only materia
 
 ```sh
 python3 tooling/validate.py --write-catalog
+python3 -m tooling.package_plugins --write
 python3 tooling/validate.py
+python3 -m tooling.package_plugins
 python3 -m unittest discover -s tests
 ```
 
