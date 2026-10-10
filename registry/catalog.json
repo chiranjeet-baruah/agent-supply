@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "id": "go-code-review",
+      "title": "Go Code Review",
+      "summary": "Review Go changes for correctness, concurrency, reliability, and test gaps.",
+      "category": "Software engineering",
+      "path": "skills/go-code-review",
+      "version": "0.1.0",
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "postgres-query-review",
+      "title": "PostgreSQL Query Review",
+      "summary": "Diagnose query correctness and performance using plans and workload evidence.",
+      "category": "Databases",
+      "path": "skills/postgres-query-review",
+      "version": "0.1.0",
+      "license": "Apache-2.0"
+    }
+  ]
+}
