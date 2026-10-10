@@ -5,6 +5,7 @@ Name the user task and the behavior this pull request changes.
 ## Checks
 
 - [ ] `python3 tooling/validate.py` passes
+- [ ] `python3 -m tooling.package_plugins` passes
 - [ ] `python3 -m unittest discover -s tests` passes
 - [ ] The `skillspector` CI check passes
 - [ ] I read any changed skill instructions and references, and checked their source and license
