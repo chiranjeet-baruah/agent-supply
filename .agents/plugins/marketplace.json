@@ -17,6 +17,18 @@
       "category": "Productivity"
     },
     {
+      "name": "minimalist-engineer",
+      "source": {
+        "source": "local",
+        "path": "./plugins/minimalist-engineer"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
       "name": "postgres-query-review",
       "source": {
         "source": "local",

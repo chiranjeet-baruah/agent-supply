@@ -11,6 +11,15 @@
       "license": "Apache-2.0"
     },
     {
+      "id": "minimalist-engineer",
+      "title": "Minimalist Engineer",
+      "summary": "Make focused code changes while preserving behavior, safeguards, and clarity.",
+      "category": "Software engineering",
+      "path": "skills/minimalist-engineer",
+      "version": "0.1.0",
+      "license": "Apache-2.0"
+    },
+    {
       "id": "postgres-query-review",
       "title": "PostgreSQL Query Review",
       "summary": "Diagnose query correctness and performance using plans and workload evidence.",

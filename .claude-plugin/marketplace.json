@@ -11,6 +11,11 @@
       "description": "Review Go changes for correctness, concurrency, reliability, and test gaps."
     },
     {
+      "name": "minimalist-engineer",
+      "source": "./plugins/minimalist-engineer",
+      "description": "Make focused code changes while preserving behavior, safeguards, and clarity."
+    },
+    {
       "name": "postgres-query-review",
       "source": "./plugins/postgres-query-review",
       "description": "Diagnose query correctness and performance using plans and workload evidence."
