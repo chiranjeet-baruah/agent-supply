@@ -10,4 +10,4 @@ Read its instructions and give your agent only the permissions it needs. A skill
 
 ## What the checks cover
 
-The repository validator checks file layout and metadata. CI also runs SkillSpector's static security scan on every skill. Neither check runs a skill, catches every malicious instruction, or tests behavior in every agent. The current catalog contains no executable scripts or bundled MCP servers. Maintainers may amend or remove a skill if a material risk is found.
+The repository validator checks file layout and metadata. CI also runs SkillSpector's static security scan on every skill and audits its locked Python dependencies for known vulnerabilities. Neither check runs a skill, catches every malicious instruction, or tests behavior in every agent. Dependency audits cannot detect undisclosed vulnerabilities or prove package safety. The current catalog contains no executable scripts or bundled MCP servers. Maintainers may amend or remove a skill if a material risk is found.

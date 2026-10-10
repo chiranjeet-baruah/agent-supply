@@ -16,9 +16,15 @@ Check the release job and the published tag after merging. If the job fails, ins
 
 The v0.1.0 release is complete. The [original design](superpowers/specs/2026-10-10-agent-supply-v0-design.md) and [implementation plan](superpowers/plans/2026-10-10-agent-supply-v0.md) record that work.
 
+## Dependency updates
+
+Dependabot checks GitHub Actions and the locked CI Python environment weekly. Review its PRs and let the existing checks run before merging; each merge publishes a patch release. Dependabot alerts and security update PRs are enabled in repository settings. Do not auto-merge dependency updates.
+
+SkillSpector is installed from a reviewed upstream commit recorded in `pyproject.toml`. `uv.lock` fixes its Python dependency versions and artifact hashes, and the required `skillspector` job audits the lock before installing it. This job also runs every Monday so new advisories can fail a run even without a pull request. Dependabot updates the registry packages. It does not update SkillSpector's Git commit: check upstream releases and advisories, change the commit in `pyproject.toml`, regenerate `uv.lock` with `uv lock`, and use a PR that passes both checks.
+
 ## Repository settings
 
-Checked on 2026-10-10: `chiranjeet-baruah/agent-supply` is public. The active `Protect main` ruleset requires a pull request and both status checks, uses strict checks, and blocks force pushes and deletion. Automatic deletion of merged branches, secret scanning, push protection, dependency alerts, and private vulnerability reporting are enabled. A local clone cannot verify live GitHub settings.
+Checked on 2026-10-10: `chiranjeet-baruah/agent-supply` is public. The active `Protect main` ruleset requires a pull request and both status checks, uses strict checks, and blocks force pushes and deletion. Automatic deletion of merged branches, secret scanning, push protection, Dependabot alerts and security updates, and private vulnerability reporting are enabled. A local clone cannot verify live GitHub settings.
 
 Static scans do not establish that a skill is safe or works with every agent.
 
