@@ -1,5 +1,7 @@
 # AgentSupply v0 Implementation Plan
 
+This completed plan records the v0.1.0 launch. For current checks and release steps, see [the maintainer checklist](../../MAINTAINER_SETUP.md).
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking. Native execution was used for this small, tightly coupled initial repository.
 
 **Goal:** Publish a usable, validated first-party skills catalog on GitHub.

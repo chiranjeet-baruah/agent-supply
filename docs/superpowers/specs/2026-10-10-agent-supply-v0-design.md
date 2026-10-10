@@ -1,5 +1,7 @@
 # AgentSupply v0 design
 
+This records the v0.1.0 design. For the current CI and release process, see [the maintainer checklist](../../MAINTAINER_SETUP.md).
+
 ## Purpose
 
 AgentSupply is a public, curated GitHub catalog of useful agent extensions. The first release serves developers who want inspectable, portable engineering skills. Success means a visitor can find a skill, inspect its instructions and license, install it using their agent's documented mechanism, and see exactly what the repository has validated.
@@ -18,7 +20,7 @@ Users can browse and copy a skill folder into the location documented by their a
 
 ## Review and failure behavior
 
-Invalid or unlisted skills fail validation with actionable file-specific errors. A stale generated catalog fails CI and can be repaired with `python3 tooling/validate.py --write-catalog`. Contributions must declare provenance and redistribution rights. Security reports use GitHub private vulnerability reporting where available; public issues should contain no exploit details.
+Invalid or unlisted skills fail validation with errors that name the affected file and what to fix. A stale generated catalog fails CI and can be repaired with `python3 tooling/validate.py --write-catalog`. Contributions must declare provenance and redistribution rights. Security reports use GitHub private vulnerability reporting where available; public issues should contain no exploit details.
 
 ## Alternatives rejected for v0
 

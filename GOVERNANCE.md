@@ -1,11 +1,11 @@
 # Governance
 
-AgentSupply is currently maintained by the repository owner. The maintainer decides which skills are listed, reviews changes, handles reports, and may remove a skill whose provenance or behavior is in doubt.
+The repository owner maintains AgentSupply. They decide which skills to list, review changes, handle reports, and may remove a skill if its source or behavior is in doubt.
 
-## Publication standard
+## Before a skill is published
 
-Every listing needs a clear purpose, a known source and license, a reviewable set of files, and no unsupported compatibility or safety claims. CI validation is required but does not replace reading the skill. Material behavior changes should update the registry version and describe their effect in the pull request.
+Each skill needs a clear purpose, a known source and license, and files a reviewer can inspect. Compatibility and safety claims need evidence. Changes to a published skill's behavior should raise its registry version and explain the effect in the pull request.
 
-For now, review is maintainer-led. A separate reviewer is welcome when available, but this project does not claim independent security review. Repository rules should require CI before merge; a mandatory second-person approval should be enabled only when another active maintainer can provide it.
+The `main` branch requires a pull request and passing `validate` and `skillspector` checks. A maintainer still reads changed skill instructions. A second reviewer is welcome, but the project does not claim independent security review or require an approval from another person while there is only one active maintainer.
 
-Decisions and exceptions belong in the relevant issue or pull request so contributors can understand the rationale. Appeals can be raised in a new issue without publishing private security details.
+Record decisions and exceptions in the relevant issue or pull request. Raise an appeal in a new issue without publishing private security details.
