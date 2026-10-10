@@ -1,10 +1,10 @@
 # AgentSupply
 
-Start with the [skills catalog](CATALOG.md). AgentSupply publishes two engineering skills you can read before installing. Each skill contains instructions, with no bundled scripts or MCP server. The repository also packages each skill as a plugin for Codex and Claude Code.
+Choose a skill in the [catalog](CATALOG.md), read its instructions, then install it with Codex or Claude Code. AgentSupply currently has two engineering skills. Each contains instructions, with no bundled scripts or MCP server.
 
 ## Install through a marketplace
 
-Choose a skill from the [catalog](CATALOG.md), then add this repository as a marketplace in your client.
+Choose a skill from the [catalog](CATALOG.md). Add this repository as a marketplace, then install it.
 
 **Codex CLI:**
 
@@ -20,9 +20,11 @@ claude plugin marketplace add chiranjeet-baruah/agent-supply
 claude plugin install go-code-review@agent-supply
 ```
 
-Replace `go-code-review` with `postgres-query-review` to install the other skill. The repo marketplace can also appear in the ChatGPT desktop app when this repository is open; select **AgentSupply** in the Plugins Directory. These are repository marketplaces, not listings in OpenAI's or Anthropic's public plugin directories.
+To install the other skill, replace `go-code-review` with `postgres-query-review`.
 
-Claude Code does not turn on auto-update for a new marketplace by default. To receive later skill versions, enable auto-update for **agent-supply** in `/plugin`, or run `claude plugin marketplace update agent-supply` and `claude plugin update go-code-review@agent-supply`. See [Claude's hosting guide](https://code.claude.com/docs/en/plugins/host-marketplace) and [OpenAI's plugin packaging guide](https://developers.openai.com/plugins/build/plugins) for client behavior.
+When this repository is open in the ChatGPT desktop app, **AgentSupply** can also appear in its Plugins Directory. Adding this repository does not list it in OpenAI's or Anthropic's public plugin directories.
+
+Claude Code leaves auto-update off for a new marketplace. To receive later skill versions, enable auto-update for **agent-supply** in `/plugin`. You can also update manually with `claude plugin marketplace update agent-supply` and `claude plugin update go-code-review@agent-supply`. See [Claude's hosting guide](https://code.claude.com/docs/en/plugins/host-marketplace) and [OpenAI's plugin packaging guide](https://developers.openai.com/plugins/build/plugins) for client behavior.
 
 ## Install a skill manually
 
@@ -30,11 +32,11 @@ Claude Code does not turn on auto-update for a new marketplace by default. To re
 2. Copy the full `skills/<name>/` folder to the skill location documented by your agent. Keep the folder name and `SKILL.md`.
 3. Refresh or restart the agent if its instructions require it. Try a task that matches the skill's description.
 
-The [Agent Skills specification](https://agentskills.io/specification) defines the skill format. Marketplace manifests have been validated locally for Claude Code and checked for freshness in CI. Skill behavior has not been evaluated across products or models.
+The [Agent Skills specification](https://agentskills.io/specification) defines the skill format. Claude Code's marketplace manifest has been validated locally. CI checks that both marketplace packages match the reviewed skills. Skill behavior has not been evaluated across products or models.
 
 ## Check a contribution
 
-Run the repository checks from the project root:
+From the project root, run these commands in order. The first two regenerate the catalog and marketplace packages; the remaining three check the generated files and run tests.
 
 ```sh
 python3 tooling/validate.py --write-catalog
@@ -44,13 +46,13 @@ python3 -m tooling.package_plugins
 python3 -m unittest discover -s tests
 ```
 
-The validators check [`registry/catalog.json`](registry/catalog.json), skill metadata and file layout, symlinks, catalog freshness, and whether both marketplaces package the reviewed skill files byte for byte. They need Python 3.10 or newer and no third-party packages.
+The validators check [`registry/catalog.json`](registry/catalog.json), skill metadata, file layout, symlinks, catalog freshness, and whether marketplace packages match the reviewed skill files byte for byte. They need Python 3.10 or newer and no third-party packages.
 
-CI also scans every skill with [NVIDIA SkillSpector](https://github.com/NVIDIA/skillspector). Its `skillspector` job uses Python 3.12 and a pinned upstream revision. Static scans fail on findings or incomplete coverage. Both `validate` and `skillspector` must pass before merge. The exact commands are in [the workflow](.github/workflows/validate.yml).
+CI scans every skill with [NVIDIA SkillSpector](https://github.com/NVIDIA/skillspector). Its `skillspector` job uses Python 3.12 and a pinned upstream revision. Findings or incomplete coverage fail the scan. Both `validate` and `skillspector` must pass before merge. The exact commands are in [the workflow](.github/workflows/validate.yml).
 
 These checks read skill files without running them. They do not prove that a skill is safe or works in a particular agent.
 
-Dependabot proposes weekly updates to CI's GitHub Actions and locked Python packages. The `skillspector` job audits those packages for known vulnerabilities before installation. Dependency update PRs go through the same checks and review as other changes. See the [maintainer checklist](docs/MAINTAINER_SETUP.md) for coverage and limits.
+Dependabot proposes weekly updates to CI's GitHub Actions and locked Python packages. The `skillspector` job audits those packages for known vulnerabilities before installation. Dependency update PRs need the same checks and review as other changes. See the [maintainer checklist](docs/MAINTAINER_SETUP.md) for coverage and limits.
 
 ## Releases
 

@@ -1,10 +1,10 @@
 # Maintainer checklist
 
-Review each pull request before merging. The repository ruleset requires both `validate` and `skillspector` to pass, but CI does not replace reading the changed skill.
+Read every changed skill before merging. The repository ruleset requires `validate` and `skillspector` to pass; neither check replaces a human review.
 
 ## Marketplace packages
 
-`skills/` and `registry/catalog.json` are the sources for the two marketplace manifests and the installable packages under `plugins/`. After changing a skill or its listing, run:
+`skills/` and `registry/catalog.json` supply the two marketplace manifests and the installable packages under `plugins/`. After changing a skill or its listing, run:
 
 ```sh
 python3 tooling/validate.py --write-catalog
@@ -12,9 +12,11 @@ python3 -m tooling.package_plugins --write
 python3 -m tooling.package_plugins
 ```
 
-The required `validate` job checks that every packaged skill matches the reviewed source and that no extra files appear in generated locations. You can also run `claude plugin validate .` locally to check Claude's marketplace schema. The package versions come from each skill's registry version; the repository's release tag is separate. Raise the affected skill's registry version whenever its packaged content changes: Claude Code keeps the cached copy when the plugin version stays the same. Auto-update is off by default for a new Claude marketplace. Test an installation in each client before claiming runtime compatibility.
+The required `validate` job checks that packaged skills match their reviewed sources and that generated locations have no extra files. Run `claude plugin validate .` locally to check Claude's marketplace schema.
 
-Keep this as a Git-hosted marketplace. Claude Code clones the repository and can resolve its relative plugin paths; adding only the raw `marketplace.json` URL would leave those paths unavailable. See [Claude's hosting guide](https://code.claude.com/docs/en/plugins/host-marketplace).
+Package versions come from each skill's registry version, separately from the repository release tag. Raise the affected skill's version whenever its packaged content changes. Claude Code keeps a cached copy when the plugin version stays the same. Auto-update is off by default for a new Claude marketplace. Test an installation in each client before claiming runtime compatibility.
+
+Host the marketplace in Git. Claude Code clones the repository to resolve its relative plugin paths. Adding only the raw `marketplace.json` URL leaves those paths unavailable. See [Claude's hosting guide](https://code.claude.com/docs/en/plugins/host-marketplace).
 
 ## Review a pull request
 
@@ -24,23 +26,27 @@ Keep this as a Git-hosted marketplace. Claude Code clones the repository and can
 
 ## Releases
 
-Every push to `main` runs both checks again. After they pass, CI creates the next patch tag and a GitHub release at that commit. The release notes are generated from the previous release. For example, the first automated release after `v0.1.0` is `v0.1.1`.
+Every push to `main` runs both checks again. If they pass, CI creates the next patch tag and a GitHub release at that commit. Release notes are generated from the previous release. For example, the first automated release after `v0.1.0` is `v0.1.1`.
 
-Check the release job and the published tag after merging. If the job fails, inspect its log and rerun it after fixing the cause. A rerun skips a commit that already has a release. A new minor or major version needs a deliberate release with that version; later merges continue with patch versions from it.
+After merging, check the release job and published tag. If the job fails, inspect its log, fix the cause, and rerun it. A rerun skips a commit that already has a release. Create a new minor or major version deliberately; later merges continue with patch versions from it.
 
 The v0.1.0 release is complete. The [original design](superpowers/specs/2026-10-10-agent-supply-v0-design.md) and [implementation plan](superpowers/plans/2026-10-10-agent-supply-v0.md) record that work.
 
 ## Dependency updates
 
-Dependabot checks GitHub Actions and the locked CI Python environment weekly. Review its PRs and let the existing checks run before merging; each merge publishes a patch release. Dependabot alerts and security update PRs are enabled in repository settings. Do not auto-merge dependency updates.
+Dependabot checks GitHub Actions and the locked CI Python environment weekly. Review its PRs and run the existing checks before merging. Each merge publishes a patch release. Dependabot alerts and security update PRs are enabled in repository settings. Do not auto-merge dependency updates.
 
-SkillSpector is installed from a reviewed upstream commit recorded in `pyproject.toml`. `uv.lock` fixes its Python dependency versions and artifact hashes, and the required `skillspector` job audits the lock before installing it. This job also runs every Monday so new advisories can fail a run even without a pull request. Dependabot updates the registry packages. It does not update SkillSpector's Git commit: check upstream releases and advisories, change the commit in `pyproject.toml`, regenerate `uv.lock` with `uv lock`, and use a PR that passes both checks.
+SkillSpector is installed from a reviewed upstream commit recorded in `pyproject.toml`. `uv.lock` fixes Python dependency versions and artifact hashes. The required `skillspector` job audits the lock before installing it and runs every Monday, so a new advisory can fail a scheduled run.
+
+Dependabot updates registry packages, but not SkillSpector's Git commit. To update that commit, check upstream releases and advisories, edit `pyproject.toml`, regenerate `uv.lock` with `uv lock`, and submit a PR that passes both checks.
 
 The setup-uv Action is tracked by Dependabot; its `version` input pins the uv binary separately. Review new uv releases and update that input through a checked PR. Keep the binary pinned so CI does not change between reviews.
 
 ## Repository settings
 
-Checked on 2026-10-10: `chiranjeet-baruah/agent-supply` is public. The active `Protect main` ruleset requires a pull request and both status checks, uses strict checks, and blocks force pushes and deletion. Automatic deletion of merged branches, secret scanning, push protection, Dependabot alerts and security updates, and private vulnerability reporting are enabled. A local clone cannot verify live GitHub settings.
+Checked on 2026-10-10: `chiranjeet-baruah/agent-supply` is public. The active `Protect main` ruleset requires a pull request and both status checks, uses strict checks, and blocks force pushes and deletion.
+
+Automatic deletion of merged branches, secret scanning, push protection, Dependabot alerts and security updates, and private vulnerability reporting were enabled at that check. Verify these settings in GitHub; a local clone cannot show their current state.
 
 Static scans do not establish that a skill is safe or works with every agent.
 
