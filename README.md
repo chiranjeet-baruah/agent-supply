@@ -26,6 +26,10 @@ CI also scans every skill with [NVIDIA SkillSpector](https://github.com/NVIDIA/s
 
 These checks read skill files without running them. They do not prove that a skill is safe or works in a particular agent.
 
+## Releases
+
+After both checks pass on `main`, CI publishes the next patch version as a [GitHub release](https://github.com/chiranjeet-baruah/agent-supply/releases). Each release points to the checked commit and uses generated notes. See the [maintainer checklist](docs/MAINTAINER_SETUP.md) for recovery steps.
+
 ## Contribute or report an issue
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md) before proposing a skill. Current submissions must be original, instruction-only skills with optional Markdown references. A maintainer reviews the purpose, source, behavior, and risks.
