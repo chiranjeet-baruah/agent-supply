@@ -7,6 +7,7 @@ For releases after `v0.1.0`, see [GitHub Releases](https://github.com/chiranjeet
 - Required SkillSpector static scans and the existing validator to pass before merging to `main`.
 - Updated the contributor, security, and maintainer documentation to reflect the current workflow.
 - Added automatic patch releases after both checks pass on `main`.
+- Added weekly Dependabot updates for CI dependencies, locked SkillSpector's Python packages, audited them in CI, and updated the pinned checkout action.
 
 ## 0.1.0
 

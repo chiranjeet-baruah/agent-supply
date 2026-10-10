@@ -1,0 +1,10 @@
+[project]
+name = "agent-supply-ci"
+version = "0.0.0"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "skillspector @ git+https://github.com/NVIDIA/skillspector.git@5edc347c320bd516f8ff38df200a63831bf92e80",
+]
+
+[tool.uv]
+package = false

@@ -26,6 +26,8 @@ CI also scans every skill with [NVIDIA SkillSpector](https://github.com/NVIDIA/s
 
 These checks read skill files without running them. They do not prove that a skill is safe or works in a particular agent.
 
+Dependabot proposes weekly updates to CI's GitHub Actions and locked Python packages. The `skillspector` job audits those packages for known vulnerabilities before installation. Dependency update PRs go through the same checks and review as other changes. See the [maintainer checklist](docs/MAINTAINER_SETUP.md) for coverage and limits.
+
 ## Releases
 
 After both checks pass on `main`, CI publishes the next patch version as a [GitHub release](https://github.com/chiranjeet-baruah/agent-supply/releases). Each release points to the checked commit and uses generated notes. See the [maintainer checklist](docs/MAINTAINER_SETUP.md) for recovery steps.

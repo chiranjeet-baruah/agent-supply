@@ -1,0 +1,22 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+  - package-ecosystem: uv
+    directory: /
+    schedule:
+      interval: weekly
+    allow:
+      - dependency-type: all
+    ignore:
+      # Dependabot cannot safely update this Git SHA; review upstream releases manually.
+      - dependency-name: skillspector
+    groups:
+      ci-python:
+        patterns:
+          - "*"
+        update-types:
+          - minor
+          - patch
