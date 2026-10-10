@@ -1,0 +1,32 @@
+{
+  "name": "agent-supply",
+  "interface": {
+    "displayName": "AgentSupply"
+  },
+  "plugins": [
+    {
+      "name": "go-code-review",
+      "source": {
+        "source": "local",
+        "path": "./plugins/go-code-review"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "postgres-query-review",
+      "source": {
+        "source": "local",
+        "path": "./plugins/postgres-query-review"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

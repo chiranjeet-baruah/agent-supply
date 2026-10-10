@@ -2,6 +2,20 @@
 
 Review each pull request before merging. The repository ruleset requires both `validate` and `skillspector` to pass, but CI does not replace reading the changed skill.
 
+## Marketplace packages
+
+`skills/` and `registry/catalog.json` are the sources for the two marketplace manifests and the installable packages under `plugins/`. After changing a skill or its listing, run:
+
+```sh
+python3 tooling/validate.py --write-catalog
+python3 -m tooling.package_plugins --write
+python3 -m tooling.package_plugins
+```
+
+The required `validate` job checks that every packaged skill matches the reviewed source and that no extra files appear in generated locations. You can also run `claude plugin validate .` locally to check Claude's marketplace schema. The package versions come from each skill's registry version; the repository's release tag is separate. Raise the affected skill's registry version whenever its packaged content changes: Claude Code keeps the cached copy when the plugin version stays the same. Auto-update is off by default for a new Claude marketplace. Test an installation in each client before claiming runtime compatibility.
+
+Keep this as a Git-hosted marketplace. Claude Code clones the repository and can resolve its relative plugin paths; adding only the raw `marketplace.json` URL would leave those paths unavailable. See [Claude's hosting guide](https://code.claude.com/docs/en/plugins/host-marketplace).
+
 ## Review a pull request
 
 1. Read changed instructions and references. Check the skill's source, license, authority, and likely failure modes.

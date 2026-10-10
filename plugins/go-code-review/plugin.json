@@ -1,0 +1,12 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "go-code-review",
+  "version": "0.1.0",
+  "description": "Review Go changes for correctness, concurrency, reliability, and test gaps.",
+  "author": {
+    "name": "AgentSupply"
+  },
+  "homepage": "https://github.com/chiranjeet-baruah/agent-supply",
+  "repository": "https://github.com/chiranjeet-baruah/agent-supply",
+  "license": "Apache-2.0"
+}
